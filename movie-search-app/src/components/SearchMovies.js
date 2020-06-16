@@ -17,10 +17,6 @@ export default function SearchMovies() {
             const data = await res.json();
             setMovies(data.results);
 
-            if (movies.length > 0) {
-                console.log(movies[0].title);
-            }
-
         } catch(err) {
             console.error(err);
         }
@@ -28,11 +24,7 @@ export default function SearchMovies() {
 
     const displayMovies = () => {
         return (
-            movies
-            .filter(movie => movie.poster_path)
-            .map(movie => (
-                <MovieCard key={movie.id} movie={movie}/>
-            ))
+            movies.filter(movie => movie.poster_path).map(movie => (<MovieCard key={movie.id} movie={movie} />))
         )
     }
 
@@ -43,12 +35,12 @@ export default function SearchMovies() {
     return (
         <>
             <form className="form" onSubmit={searchMovies}>
-                <label className="label" htmlFor="query">Movie Name</label>
+                <label className="label" htmlFor="query"></label>
                 <input 
                     className="input" 
                     type="text"
                     name="query"
-                    placeholder="i.e. Jurassic Park"
+                    placeholder="Movie Name"
                     value={query}
                     onChange={handleChange}
                 />
